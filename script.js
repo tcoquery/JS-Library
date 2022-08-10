@@ -20,10 +20,11 @@ function addBookToLibrary(title, author, pages, read) {
 function showBooks() {  
     library.textContent = "";
     const row = document.createElement("tr");
-    const title = document.createElement("td");
-    const author = document.createElement("td");
-    const pages = document.createElement("td");
-    const read = document.createElement("td");
+    const title = document.createElement("th");
+    const author = document.createElement("th");
+    const pages = document.createElement("th");
+    const read = document.createElement("th");
+    const empty = document.createElement("th");
     row.classList.add("first-row");
     title.textContent = "Title";
     author.textContent = "Author";
@@ -34,32 +35,38 @@ function showBooks() {
     row.appendChild(author);
     row.appendChild(pages);
     row.appendChild(read);    
+    row.appendChild(empty);  
     for (let i = 0; i < myLibrary.length ; i++) {
         const newRow = document.createElement("tr");
         const newTitle = document.createElement("td");
         const newAuthor = document.createElement("td");
-        const newPages = document.createElement("td");
-        const newRead = document.createElement("button");
-        const button = document.createElement("button");
+        const newPages = document.createElement("td");        
+        const newRead = document.createElement("td");
+        const newRemove = document.createElement("td");
+        const readButton = document.createElement("button");
+        const removeButton = document.createElement("img");
         newTitle.textContent = myLibrary[i].title;
         newAuthor.textContent = myLibrary[i].author;
         newPages.textContent = myLibrary[i].pages;
-        newRead.textContent = myLibrary[i].read;
-        button.textContent = "Remove";
-        button.classList.add("remove")
+        readButton.textContent = myLibrary[i].read;
+        removeButton.textContent = "Delete";
+        removeButton.classList.add("remove")
         if(myLibrary[i].read == "yes") {
-            newRead.classList.add("read")
+            readButton.classList.add("read")
         } else { 
-            newRead.classList.add("unread")
+            readButton.classList.add("unread")
         }
-        button.dataset.indexNumber = i;
-        newRead.dataset.indexNumber = i;
+        removeButton.dataset.indexNumber = i;
+        removeButton.src = "trash.png"
+        readButton.dataset.indexNumber = i;
         library.appendChild(newRow)
         newRow.appendChild(newTitle);
         newRow.appendChild(newAuthor);
         newRow.appendChild(newPages);
         newRow.appendChild(newRead);
-        newRow.appendChild(button);
+        newRow.appendChild(newRemove);
+        newRead.appendChild(readButton);
+        newRemove.appendChild(removeButton);
     }
     const removeButtons = document.querySelectorAll(".remove");
     removeButtons.forEach(button =>{
