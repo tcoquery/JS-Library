@@ -1,5 +1,5 @@
 body {
-  font-family: 'Poppins', sans-serif; 
+  font-family:  Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
   display: flex;
   padding: 0;
   margin: 0;
@@ -108,6 +108,7 @@ h1 {
 .read {
   background-color: #4CAF50; /* Green */
   border: none;
+  border-radius: 15px;
   color: white;
   padding: 7px 16px;
   text-align: center;
@@ -120,6 +121,7 @@ h1 {
   background-color: red;
   border: none;
   color: white;
+  border-radius: 15px;
   padding: 7px 16px;
   text-align: center;
   text-decoration: none;
@@ -128,16 +130,24 @@ h1 {
 }
 
 table {
-  border-top: 2px solid #e03997;
-  width: 100%;
+  max-width: 900px;
   background: #fff;
-  border-radius: .28571429rem;
   border-spacing: 0;
 }
 
-.first-row {
-  background-color: #ffeffb;
-  font-weight: 700;
-  text-transform: none;
-  border-bottom: 1px solid rgba(34,36,38,.1);
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  background-color: #d5d7e3;
+  font-size: 1em;
+  color: black;
 }
+
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 1.1rem;
+}
+
+
