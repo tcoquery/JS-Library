@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script src="script.js" defer></script> 
+    <title>Document</title>
+</head>
+<body> 
+    <div class="sidebar">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title"><br>
+        <label for="author">Author:</label><br>
+        <input type="text" id="author"><br>
+        <label for="pages">Pages:</label><br>
+        <input type="number" id="pages"><br>
+        <div class="checkbox-container"> Read:
+            <label for="status" class="toggler-wrapper style-21">
+                <input type="checkbox" id="status" name="status" >
+                    <div class="toggler-slider">
+                        <div class="toggler-knob"></div>
+                    </div>
+            </label>
+        </div>
+        <button id="btn">Add book to my library</button>
+    </div>
+    <div class="main">
+        <h1>My library:</h1>
+        <table class="library">
+            <thead class="thead"></thead>
+            <tbody class="tbody"></tbody>
+        </table>
+    </div>
+
+</body>
+</html>
