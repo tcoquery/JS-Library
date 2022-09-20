@@ -95,19 +95,22 @@ function showBooks() {
         })
     }
 
-btn.addEventListener("click", () => {
-    const t = document.getElementById('title').value 
-    const a = document.getElementById('author').value 
-    const p = document.getElementById('pages').value 
-    let r = document.getElementById('status').checked 
-    if(r == true) {
-        r = "yes"
-        addBookToLibrary(t,a,p,r)
-    } else {
-        r = "no"
-        addBookToLibrary(t,a,p,r)
-    }
-    showBooks();
-});
+    btn.addEventListener("click", () => {
+        const t = document.getElementById('title').value 
+        const a = document.getElementById('author').value 
+        const p = document.getElementById('pages').value 
+        let r = document.getElementById('status').checked 
+        if(t === "" || a === "" || p === "") {
+            alert("You must fill all fields !")
+        }
+        else if(r == true) {
+            r = "yes";
+            addBookToLibrary(t,a,p,r);
+        } else {
+            r = "no";
+            addBookToLibrary(t,a,p,r);
+        }
+        showBooks();
+    });
 
 
