@@ -17,8 +17,7 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(newBook);
 }
 
-function showBooks() {  
-    library.textContent = "";
+function firstRow() {
     const row = document.createElement("tr");
     const title = document.createElement("th");
     const author = document.createElement("th");
@@ -35,65 +34,76 @@ function showBooks() {
     row.appendChild(author);
     row.appendChild(pages);
     row.appendChild(read);    
-    row.appendChild(empty);  
-    for (let i = 0; i < myLibrary.length ; i++) {
-        const newRow = document.createElement("tr");
-        const newTitle = document.createElement("td");
-        const newAuthor = document.createElement("td");
-        const newPages = document.createElement("td");        
-        const newRead = document.createElement("td");
-        const newRemove = document.createElement("td");
-        const readButton = document.createElement("button");
-        const removeButton = document.createElement("img");
-        newTitle.textContent = myLibrary[i].title;
-        newAuthor.textContent = myLibrary[i].author;
-        newPages.textContent = myLibrary[i].pages;
-        readButton.textContent = myLibrary[i].read;
-        removeButton.textContent = "Delete";
-        removeButton.classList.add("remove")
-        if(myLibrary[i].read == "yes") {
-            readButton.classList.add("read")
-        } else { 
-            readButton.classList.add("unread")
-        }
-        removeButton.dataset.indexNumber = i;
-        removeButton.src = "trash.png"
-        readButton.dataset.indexNumber = i;
-        library.appendChild(newRow)
-        newRow.appendChild(newTitle);
-        newRow.appendChild(newAuthor);
-        newRow.appendChild(newPages);
-        newRow.appendChild(newRead);
-        newRow.appendChild(newRemove);
-        newRead.appendChild(readButton);
-        newRemove.appendChild(removeButton);
-    }
-    const removeButtons = document.querySelectorAll(".remove");
-    removeButtons.forEach(button =>{
-        button.addEventListener("click", function(){
-            let i = button.dataset.indexNumber;
-            myLibrary.splice(i, 1)
-            showBooks();
-            });
-        })
-    const readButtons = document.querySelectorAll(".read, .unread");
-    readButtons.forEach(button =>{
-        button.addEventListener("click", function(){
-            let i = button.dataset.indexNumber;
+    row.appendChild(empty); 
+}
+
+function showBooks() {  
+    library.textContent = "";
+    if (myLibrary.length === 0) {
+        return
+    } else {
+        firstRow();
+        for (let i = 0; i < myLibrary.length ; i++) {
+            const newRow = document.createElement("tr");
+            const newTitle = document.createElement("td");
+            const newAuthor = document.createElement("td");
+            const newPages = document.createElement("td");        
+            const newRead = document.createElement("td");
+            const newRemove = document.createElement("td");
+            const readButton = document.createElement("button");
+            const removeButton = document.createElement("img");
+            newTitle.textContent = myLibrary[i].title;
+            newAuthor.textContent = myLibrary[i].author;
+            newPages.textContent = myLibrary[i].pages;
+            readButton.textContent = myLibrary[i].read;
+            removeButton.textContent = "Delete";
+            removeButton.classList.add("remove")
             if(myLibrary[i].read == "yes") {
-                button.textContent = "no"
-                myLibrary[i].read = "no"
-                button.classList.add("unread")
-                button.classList.remove("read")
+                readButton.classList.add("read")
             } else { 
-                button.textContent = "yes"
-                myLibrary[i].read = "yes"
-                button.classList.add("read")
-                button.classList.remove("unread")
+                readButton.classList.add("unread")
             }
-            });
-        })
+            removeButton.dataset.indexNumber = i;
+            removeButton.src = "trash.png"
+            readButton.dataset.indexNumber = i;
+            library.appendChild(newRow)
+            newRow.appendChild(newTitle);
+            newRow.appendChild(newAuthor);
+            newRow.appendChild(newPages);
+            newRow.appendChild(newRead);
+            newRow.appendChild(newRemove);
+            newRead.appendChild(readButton);
+            newRemove.appendChild(removeButton);
+        }
+        const removeButtons = document.querySelectorAll(".remove");
+        removeButtons.forEach(button =>{
+            button.addEventListener("click", function(){
+                let i = button.dataset.indexNumber;
+                myLibrary.splice(i, 1)
+                console.log(myLibrary)
+                showBooks();
+                });
+            })
+        const readButtons = document.querySelectorAll(".read, .unread");
+        readButtons.forEach(button =>{
+            button.addEventListener("click", function(){
+                let i = button.dataset.indexNumber;
+                if(myLibrary[i].read == "yes") {
+                    button.textContent = "no"
+                    myLibrary[i].read = "no"
+                    button.classList.add("unread")
+                    button.classList.remove("read")
+                } else { 
+                    button.textContent = "yes"
+                    myLibrary[i].read = "yes"
+                    button.classList.add("read")
+                    button.classList.remove("unread")
+                }
+                });
+            })
+        }
     }
+    
 
     btn.addEventListener("click", () => {
         const t = document.getElementById('title').value 
