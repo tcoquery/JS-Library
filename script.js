@@ -37,6 +37,37 @@ function firstRow() {
     row.appendChild(empty); 
 }
 
+function deleteButtons() {
+    const removeButtons = document.querySelectorAll(".remove");
+    removeButtons.forEach(button =>{
+        button.addEventListener("click", function(){
+            let i = button.dataset.indexNumber;
+            myLibrary.splice(i, 1)
+            showBooks();
+        });
+    })
+}
+
+function readButtons() {
+    const readButtons = document.querySelectorAll(".read, .unread");
+    readButtons.forEach(button =>{
+        button.addEventListener("click", function(){
+            let i = button.dataset.indexNumber;
+            if(myLibrary[i].read == "yes") {
+                button.textContent = "no"
+                myLibrary[i].read = "no"
+                button.classList.add("unread")
+                button.classList.remove("read")
+            } else { 
+                button.textContent = "yes"
+                myLibrary[i].read = "yes"
+                button.classList.add("read")
+                button.classList.remove("unread")
+            }
+        });
+    })
+}
+
 function showBooks() {  
     library.textContent = "";
     if (myLibrary.length === 0) {
@@ -75,32 +106,8 @@ function showBooks() {
             newRead.appendChild(readButton);
             newRemove.appendChild(removeButton);
         }
-        const removeButtons = document.querySelectorAll(".remove");
-        removeButtons.forEach(button =>{
-            button.addEventListener("click", function(){
-                let i = button.dataset.indexNumber;
-                myLibrary.splice(i, 1)
-                console.log(myLibrary)
-                showBooks();
-                });
-            })
-        const readButtons = document.querySelectorAll(".read, .unread");
-        readButtons.forEach(button =>{
-            button.addEventListener("click", function(){
-                let i = button.dataset.indexNumber;
-                if(myLibrary[i].read == "yes") {
-                    button.textContent = "no"
-                    myLibrary[i].read = "no"
-                    button.classList.add("unread")
-                    button.classList.remove("read")
-                } else { 
-                    button.textContent = "yes"
-                    myLibrary[i].read = "yes"
-                    button.classList.add("read")
-                    button.classList.remove("unread")
-                }
-                });
-            })
+        deleteButtons();
+        readButtons();
         }
     }
     
